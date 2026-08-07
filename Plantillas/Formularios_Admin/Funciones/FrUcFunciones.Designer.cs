@@ -307,7 +307,6 @@
             TimePickerHora.Size = new Size(291, 30);
             TimePickerHora.TabIndex = 74;
             TimePickerHora.Text = "1200";
-            TimePickerHora.TextAlign = HorizontalAlignment.Center;
             // 
             // LbPelicula
             // 

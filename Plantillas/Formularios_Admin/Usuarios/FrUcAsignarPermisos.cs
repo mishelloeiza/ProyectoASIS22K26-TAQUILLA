@@ -1,5 +1,5 @@
 ﻿/* Inicio de Codigo de Diego Fernando Santizo Samayoa con carnet: 0901-22-15950 en la  
- * fecha de: 30/07/2026 */
+ * fecha de: 05/08/2026 */
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,73 +10,59 @@ namespace Formularios_Admin
 {
     public partial class FrUcAsignarPermisos : UserControl
     {
-        private readonly If_Permisos api = new If_Permisos();
-        private DataTable tablaUsuarios;
-
-        private class OpcionPermiso
-        {
-            public string Columna { get; }
-            public string Nombre { get; }
-            public OpcionPermiso(string columna, string nombre)
-            {
-                Columna = columna;
-                Nombre = nombre;
-            }
-            public override string ToString()
-            {
-                return Nombre;
-            }
-        }
+        private readonly If_AsignarPermisos api = new If_AsignarPermisos();
+        private DataTable tabla;
 
         public FrUcAsignarPermisos()
         {
             InitializeComponent();
-            PrepararInterfaz();
             WireEvents();
+            CargarCombos();
             CargarFiltro();
             CargarGrilla();
-            ModoInicial();
-        }
-
-        private void PrepararInterfaz()
-        {
-            LbPerfil.Text = "Usuario";
-            LbAplicacion.Text = "Aplicaciones";
-
-            ListBoxAplicacion.Items.Clear();
-            ListBoxAplicacion.SelectionMode = SelectionMode.MultiSimple;
-            ListBoxAplicacion.Items.Add(new OpcionPermiso("APL103", "APL103 — Películas"));
-            ListBoxAplicacion.Items.Add(new OpcionPermiso("APL104", "APL104 — Usuarios"));
-            ListBoxAplicacion.Items.Add(new OpcionPermiso("APL105", "APL105 — Perfiles"));
-            ListBoxAplicacion.Items.Add(new OpcionPermiso("APL106", "APL106 — Permisos"));
-            ListBoxAplicacion.Items.Add(new OpcionPermiso("APL107", "APL107 — Géneros"));
-            ListBoxAplicacion.Items.Add(new OpcionPermiso("APL108", "APL108 — Salas"));
-            ListBoxAplicacion.Items.Add(new OpcionPermiso("APL109", "APL109 — Cines"));
-            ListBoxAplicacion.Items.Add(new OpcionPermiso("APL110", "APL110 — Funciones"));
-            ListBoxAplicacion.Items.Add(new OpcionPermiso("APL111", "APL111 — Ventas"));
-            ListBoxAplicacion.Items.Add(new OpcionPermiso("APL112", "APL112 — Promociones"));
-            ListBoxAplicacion.ClearSelected();
         }
 
         private void WireEvents()
         {
+            BtnAgregar.Click += BtnAgregar_Click;
+            BtnEliminar.Click += BtnEliminar_Click;
             BtnLimpiar.Click += BtnLimpiar_Click;
-            BtnBuscar.Click += BtnBuscar_Click;
+            BtnCopiar.Click += BtnCopiar_Click;
+            customButton1.Click += BtnBuscar_Click;
+        }
+
+        private void CargarCombos()
+        {
+            CbPerfil.DataSource = api.ListarPerfiles();
+            CbPerfil.DisplayMember = "Nombre";
+            CbPerfil.ValueMember = "Id";
+            CbPerfil.SelectedIndex = -1;
+
+            CbPermiso.DataSource = api.ListarAcciones();
+            CbPermiso.DisplayMember = "Nombre";
+            CbPermiso.ValueMember = "Id";
+            CbPermiso.SelectedIndex = -1;
+
+            ListBoxAplicacion.DataSource = api.ListarAplicaciones();
+            ListBoxAplicacion.DisplayMember = "Nombre";
+            ListBoxAplicacion.ValueMember = "Id";
         }
 
         private void CargarFiltro()
         {
             CbFiltro.Items.Clear();
-            CbFiltro.Items.Add("ID");
-            CbFiltro.Items.Add("Usuario");
             CbFiltro.Items.Add("Perfil");
-            CbFiltro.SelectedIndex = 1;
+            CbFiltro.Items.Add("Permiso");
+            CbFiltro.Items.Add("Aplicación");
+            CbFiltro.Items.Add("Código");
+            CbFiltro.SelectedIndex = 0;
         }
 
         private void CargarGrilla()
         {
-            tablaUsuarios = api.ListarUsuarios();
-            DgvAsignarPermisos.DataSource = tablaUsuarios;
+            tabla = api.Listar();
+            DgvAsignarPermisos.DataSource = tabla;
+            DgvAsignarPermisos.MultiSelect = true;
             FormatearGrilla();
         }
 
@@ -84,9 +70,21 @@ namespace Formularios_Admin
         {
             if (DgvAsignarPermisos.Columns.Count == 0) return;
 
-            Encabezado("id_usuario", "ID");
-            Encabezado("nombre_usuario", "Usuario");
+            Ocultar("id_perfil");
+            Ocultar("id_permiso");
+            Ocultar("id_accion_permiso");
+            Ocultar("id_aplicacion");
+
             Encabezado("nombre_perfil", "Perfil");
+            Encabezado("nombre_accion_permiso", "Permiso");
+            Encabezado("codigo_aplicacion", "Código");
+            Encabezado("nombre_aplicacion", "Aplicación");
+        }
+
+        private void Ocultar(string columna)
+        {
+            if (DgvAsignarPermisos.Columns.Contains(columna))
+                DgvAsignarPermisos.Columns[columna].Visible = false;
         }
 
         private void Encabezado(string columna, string texto)
@@ -95,106 +93,210 @@ namespace Formularios_Admin
                 DgvAsignarPermisos.Columns[columna].HeaderText = texto;
         }
 
-        private void ModoInicial()
+        private void BtnAgregar_Click(object sender, EventArgs e)
         {
-            ListBoxAplicacion.ClearSelected();
+            int? idPerfil = IdDe(CbPerfil.SelectedValue);
+            int? idAccion = IdDe(CbPermiso.SelectedValue);
+
+            if (idPerfil == null)
+            {
+                MessageBox.Show("Selecciona un perfil.", "Asignar permisos",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (idAccion == null)
+            {
+                MessageBox.Show("Selecciona un permiso.", "Asignar permisos",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int[] apps = LeerAplicacionesMarcadas();
+            if (apps.Length == 0)
+            {
+                MessageBox.Show("Marca al menos una aplicación.", "Asignar permisos",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                int nuevos = 0, existentes = 0;
+                foreach (int idApp in apps)
+                {
+                    if (api.Asignar(idPerfil.Value, idAccion.Value, idApp)) nuevos++;
+                    else existentes++;
+                }
+
+                string msg = "Permisos asignados: " + nuevos +
+                             (existentes > 0 ? ("\nYa existían: " + existentes) : "");
+                MessageBox.Show(msg, "Asignar permisos",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                CargarGrilla();
+                LimpiarFormulario();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudieron asignar los permisos.\n\n" + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void ModoEdicion()
+        private void BtnEliminar_Click(object sender, EventArgs e)
         {
-        }
+            int? idPerfil = IdDe(CbPerfil.SelectedValue);
+            int? idAccion = IdDe(CbPermiso.SelectedValue);
 
-        private void PonerTexto(Componentes.CustomTextBox tb, string valor)
-        {
-            tb.Focus();
-            tb.Text = valor;
-            tb.ForeColor = System.Drawing.Color.FromArgb(230, 230, 230);
+            if (idPerfil == null)
+            {
+                MessageBox.Show("Selecciona un perfil.", "Asignar permisos",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (idAccion == null)
+            {
+                MessageBox.Show("Selecciona un permiso.", "Asignar permisos",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int[] apps = LeerAplicacionesMarcadas();
+            if (apps.Length == 0)
+            {
+                MessageBox.Show("Marca al menos una aplicación.", "Asignar permisos",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var confirmar = MessageBox.Show(
+                apps.Length == 1
+                    ? "¿Quitar la asignación seleccionada?"
+                    : "¿Quitar las " + apps.Length + " asignaciones seleccionadas?",
+                "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirmar != DialogResult.Yes) return;
+
+            try
+            {
+                int eliminadas = 0, noExistian = 0;
+                foreach (int idApp in apps)
+                {
+                    if (api.Eliminar(idPerfil.Value, idAccion.Value, idApp)) eliminadas++;
+                    else noExistian++;
+                }
+
+                string msg = "Asignaciones eliminadas: " + eliminadas +
+                             (noExistian > 0 ? ("\nNo estaban asignadas: " + noExistian) : "");
+                MessageBox.Show(msg, "Asignar permisos",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                CargarGrilla();
+                LimpiarFormulario();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudieron eliminar las asignaciones.\n\n" + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void BtnCopiar_Click(object sender, EventArgs e)
         {
-        }
-
-        private void MarcarSeleccion(Krypton.Toolkit.KryptonListBox lista, DataRow permisos)
-        {
-            lista.ClearSelected();
-            if (permisos == null) return;
-
-            for (int i = 0; i < lista.Items.Count; i++)
+            var drv = DgvAsignarPermisos.CurrentRow?.DataBoundItem as DataRowView;
+            if (drv == null)
             {
-                var op = lista.Items[i] as OpcionPermiso;
-                if (op == null) continue;
-
-                if (permisos.Table.Columns.Contains(op.Columna) &&
-                    permisos[op.Columna] != DBNull.Value &&
-                    Convert.ToInt32(permisos[op.Columna]) == 1)
-                {
-                    lista.SetSelected(i, true);
-                }
+                MessageBox.Show("Selecciona una asignación de la tabla.", "Asignar permisos",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-        }
 
-        private void AgregarSeleccion(Krypton.Toolkit.KryptonListBox lista, HashSet<string> activas)
-        {
-            foreach (var item in lista.SelectedItems)
-            {
-                var op = item as OpcionPermiso;
-                if (op != null)
-                    activas.Add(op.Columna);
-            }
-        }
-
-        private void BtnGuardar_Click(object sender, EventArgs e)
-        {
+            CbPerfil.SelectedValue = drv["id_perfil"];
+            CbPermiso.SelectedValue = drv["id_accion_permiso"];
+            MarcarSoloAplicacion(Convert.ToInt32(drv["id_aplicacion"]));
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            if (tablaUsuarios == null) return;
+            if (tabla == null) return;
 
-            string texto = TbFiltro.Text.Trim().Replace("'", "''");
+            string texto = customTextBox1.Text.Trim().Replace("'", "''");
             if (texto.Length == 0)
             {
-                tablaUsuarios.DefaultView.RowFilter = string.Empty;
+                tabla.DefaultView.RowFilter = string.Empty;
                 return;
             }
 
-            string columna = ColumnaFiltro();
-            if (columna == "id_usuario")
-                tablaUsuarios.DefaultView.RowFilter =
-                    "Convert(id_usuario, 'System.String') LIKE '%" + texto + "%'";
-            else
-                tablaUsuarios.DefaultView.RowFilter = columna + " LIKE '%" + texto + "%'";
+            tabla.DefaultView.RowFilter = ColumnaFiltro() + " LIKE '%" + texto + "%'";
         }
 
         private string ColumnaFiltro()
         {
-            string sel = CbFiltro.SelectedItem == null ? "Usuario" : CbFiltro.SelectedItem.ToString();
+            string sel = CbFiltro.SelectedItem == null ? "Perfil" : CbFiltro.SelectedItem.ToString();
             switch (sel)
             {
-                case "ID": return "id_usuario";
-                case "Perfil": return "nombre_perfil";
-                default: return "nombre_usuario";
+                case "Permiso": return "nombre_accion_permiso";
+                case "Aplicación": return "nombre_aplicacion";
+                case "Código": return "codigo_aplicacion";
+                default: return "nombre_perfil";
             }
         }
 
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
-            TbFiltro.Clear();
+            customTextBox1.Clear();
             CargarGrilla();
-            ModoInicial();
+            LimpiarFormulario();
         }
 
-        private void BtnCopiar_Click_1(object sender, EventArgs e)
+        private void LimpiarFormulario()
         {
+            CbPerfil.SelectedIndex = -1;
+            CbPermiso.SelectedIndex = -1;
+            DesmarcarAplicaciones();
+        }
 
+        private int[] LeerAplicacionesMarcadas()
+        {
+            var ids = new List<int>();
+            foreach (var item in ListBoxAplicacion.SelectedItems)
+            {
+                if (item is DataRowView drv && drv["Id"] != DBNull.Value)
+                    ids.Add(Convert.ToInt32(drv["Id"]));
+            }
+            return ids.ToArray();
+        }
+
+        private void MarcarSoloAplicacion(int idAplicacion)
+        {
+            ListBoxAplicacion.ClearSelected();
+            for (int i = 0; i < ListBoxAplicacion.Items.Count; i++)
+            {
+                if (ListBoxAplicacion.Items[i] is DataRowView drv &&
+                    drv["Id"] != DBNull.Value &&
+                    Convert.ToInt32(drv["Id"]) == idAplicacion)
+                {
+                    ListBoxAplicacion.SetSelected(i, true);
+                    break;
+                }
+            }
+        }
+
+        private void DesmarcarAplicaciones()
+        {
+            ListBoxAplicacion.ClearSelected();
+        }
+
+        private static int? IdDe(object valor)
+        {
+            if (valor == null || valor is DBNull) return null;
+            if (valor is int i) return i;
+            return int.TryParse(valor.ToString(), out int r) ? (int?)r : (int?)null;
         }
 
         private void TlpForm_Paint(object sender, PaintEventArgs e)
         {
-
         }
     }
 }
 /* Fin de Codigo de Diego Fernando Santizo Samayoa con carnet: 0901-22-15950 en la  
- * fecha de: 30/07/2026 */
+ * fecha de: 05/08/2026 */

@@ -30,7 +30,7 @@ namespace Plantilla_Admin
 
         private void WireNavButtons()
         {
-            Button[] navButtons = { BtnPeliculas, BtnFunciones, BtnPromocion, BtnSalas };
+            Button[] navButtons = { BtnPeliculas, BtnFunciones, BtnPromocion, BtnSalas, BtnCartelera};
 
             foreach (Button b in navButtons)
             {
@@ -48,6 +48,7 @@ namespace Plantilla_Admin
             BtnFunciones.Click += (s, e) => Navegar(BtnFunciones, new FrUcFunciones());
             BtnPromocion.Click += (s, e) => Navegar(BtnPromocion, new FrUcPromociones());
             BtnSalas.Click += (s, e) => Navegar(BtnSalas, new FrUcSalas());
+            BtnCartelera.Click += (s, e) => Navegar(BtnCartelera, new FrUcCartelera());
 
             CbCatalog.SelectedIndexChanged += CbCatalog_SelectedIndexChanged;
         }
@@ -151,6 +152,11 @@ namespace Plantilla_Admin
             PnlMain.Controls.Clear();
             pagina.Dock = DockStyle.Fill;
             PnlMain.Controls.Add(pagina);
+        }
+
+        private void BtnCartelera_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

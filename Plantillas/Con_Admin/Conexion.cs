@@ -12,6 +12,15 @@ namespace Con_Admin
 {
     public class Conexion
     {
+        /*
+        private MySqlConnection connecion;
+        private String server = "172.20.10.7";
+        private String datebase = "taquillas_cine";
+        private String user = "root1";
+        private String password = "Root";
+        private String pconexion;
+        */
+
         private MySqlConnection connecion;
         private String server = "localhost";
         private String datebase = "taquillas_cine";
@@ -60,6 +69,3 @@ namespace Con_Admin
         }
     }
 }
-
-/* Inicio de Codigo de Miguel David Contreras Jacinto con carnet: 0901-21-3878 en la
- * fecha de: 29/07/2026 */

@@ -23,11 +23,6 @@ namespace Plantilla_Cliente
 {
     public partial class FrLogin : Form
     {
-        // Datos del usuario que inició sesión, disponibles para toda la app
-        public static int IdUsuarioActual { get; set; }
-        public static string NombreUsuarioActual { get; set; }
-        public static string PerfilActual { get; set; }
-
         public FrLogin()
         {
             InitializeComponent();
@@ -77,10 +72,10 @@ namespace Plantilla_Cliente
                     return;
                 }
 
-                IdUsuarioActual = Convert.ToInt32(dt.Rows[0]["id_usuario"]);
-                NombreUsuarioActual = dt.Rows[0]["nombre_usuario"].ToString();
-                PerfilActual = perfil;
-                RegistrarBitacora(IdUsuarioActual);
+                int idUsuario = Convert.ToInt32(dt.Rows[0]["id_usuario"]);
+                string nombre = dt.Rows[0]["nombre_usuario"].ToString();
+                Sesion.Iniciar(nombre, perfil);
+                RegistrarBitacora(idUsuario);
 
                 FrMenuAdmin menu = new FrMenuAdmin();
                 menu.FormClosed += (s, args) => this.Close();
@@ -146,21 +141,21 @@ namespace Plantilla_Cliente
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
+               
                 string perfil = dt.Rows[0]["nombre_perfil"] == DBNull.Value
                     ? "" : dt.Rows[0]["nombre_perfil"].ToString();
+                /*
+               if (!perfil.Equals("admin", StringComparison.OrdinalIgnoreCase))
+               {
+                   MessageBox.Show("Acceso permitido solo a administradores.", "Login",
+                       MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                   return;
+               }*/
 
-                if (!perfil.Equals("admin", StringComparison.OrdinalIgnoreCase))
-                {
-                    MessageBox.Show("Acceso permitido solo a administradores.", "Login",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                IdUsuarioActual = Convert.ToInt32(dt.Rows[0]["id_usuario"]);
-                NombreUsuarioActual = dt.Rows[0]["nombre_usuario"].ToString();
-                PerfilActual = perfil;
-                RegistrarBitacora(IdUsuarioActual);
+                int idUsuario = Convert.ToInt32(dt.Rows[0]["id_usuario"]);
+                string nombre = dt.Rows[0]["nombre_usuario"].ToString();
+                Sesion.Iniciar(nombre, perfil);
+                RegistrarBitacora(idUsuario);
 
                 FrMenu menu = new FrMenu();
                 menu.FormClosed += (s, args) => this.Close();

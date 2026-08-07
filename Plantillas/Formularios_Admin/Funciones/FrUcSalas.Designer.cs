@@ -379,6 +379,7 @@
             BtnEliminar.TabIndex = 4;
             BtnEliminar.Text = "Eliminar";
             BtnEliminar.UseVisualStyleBackColor = false;
+            BtnEliminar.Click += BtnEliminar_Click;
             // 
             // BtnActualizar
             // 
@@ -400,6 +401,7 @@
             BtnActualizar.TabIndex = 2;
             BtnActualizar.Text = "Actualizar";
             BtnActualizar.UseVisualStyleBackColor = false;
+            BtnActualizar.Click += BtnActualizar_Click;
             // 
             // BtnCopiar
             // 
@@ -421,6 +423,7 @@
             BtnCopiar.TabIndex = 3;
             BtnCopiar.Text = "Copiar";
             BtnCopiar.UseVisualStyleBackColor = false;
+            BtnCopiar.Click += BtnCopiar_Click;
             // 
             // BtnAgregar
             // 
@@ -441,6 +444,7 @@
             BtnAgregar.TabIndex = 1;
             BtnAgregar.Text = "Agregar";
             BtnAgregar.UseVisualStyleBackColor = false;
+            BtnAgregar.Click += BtnAgregar_Click;
             // 
             // BtnLimpiar
             // 
@@ -462,6 +466,7 @@
             BtnLimpiar.TabIndex = 2;
             BtnLimpiar.Text = "Limpiar";
             BtnLimpiar.UseVisualStyleBackColor = false;
+            BtnLimpiar.Click += BtnLimpiar_Click;
             // 
             // TlpTitleLabel
             // 
@@ -547,6 +552,7 @@
             BtnBuscar.TabIndex = 5;
             BtnBuscar.Text = "Buscar";
             BtnBuscar.UseVisualStyleBackColor = false;
+            BtnBuscar.Click += BtnBuscar_Click;
             // 
             // TbFiltro
             // 

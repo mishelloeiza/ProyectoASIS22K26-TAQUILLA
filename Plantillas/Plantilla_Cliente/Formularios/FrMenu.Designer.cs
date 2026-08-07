@@ -28,14 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrMenu));
             Pnl_MenuLayout = new TableLayoutPanel();
-            Ms_Opciones = new MenuStrip();
-            Tsmi_Cartelera = new ToolStripMenuItem();
-            Tsmi_Reservas = new ToolStripMenuItem();
             Pnl_Menu = new Panel();
             helpProvider1 = new HelpProvider();
             Pnl_MenuLayout.SuspendLayout();
-            Ms_Opciones.SuspendLayout();
             SuspendLayout();
             // 
             // Pnl_MenuLayout
@@ -43,50 +40,27 @@
             Pnl_MenuLayout.BackColor = SystemColors.ControlDark;
             Pnl_MenuLayout.ColumnCount = 1;
             Pnl_MenuLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            Pnl_MenuLayout.Controls.Add(Ms_Opciones, 0, 0);
-            Pnl_MenuLayout.Controls.Add(Pnl_Menu, 0, 1);
+            Pnl_MenuLayout.Controls.Add(Pnl_Menu, 0, 0);
             Pnl_MenuLayout.Dock = DockStyle.Fill;
             Pnl_MenuLayout.Location = new Point(0, 0);
             Pnl_MenuLayout.Name = "Pnl_MenuLayout";
-            Pnl_MenuLayout.RowCount = 2;
+            Pnl_MenuLayout.RowCount = 1;
             Pnl_MenuLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 4.285714F));
             Pnl_MenuLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 95.71429F));
+            Pnl_MenuLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             Pnl_MenuLayout.Size = new Size(1240, 770);
             Pnl_MenuLayout.TabIndex = 0;
             Pnl_MenuLayout.Paint += tableLayoutPanel1_Paint;
-            // 
-            // Ms_Opciones
-            // 
-            Ms_Opciones.ImageScalingSize = new Size(20, 20);
-            Ms_Opciones.Items.AddRange(new ToolStripItem[] { Tsmi_Cartelera, Tsmi_Reservas });
-            Ms_Opciones.Location = new Point(0, 0);
-            Ms_Opciones.Name = "Ms_Opciones";
-            Ms_Opciones.Size = new Size(1240, 28);
-            Ms_Opciones.TabIndex = 1;
-            Ms_Opciones.Text = "menuStrip1";
-            // 
-            // Tsmi_Cartelera
-            // 
-            Tsmi_Cartelera.Name = "Tsmi_Cartelera";
-            Tsmi_Cartelera.Size = new Size(83, 24);
-            Tsmi_Cartelera.Text = "Cartelera";
-            Tsmi_Cartelera.Click += carteleraToolStripMenuItem_Click_1;
-            // 
-            // Tsmi_Reservas
-            // 
-            Tsmi_Reservas.Name = "Tsmi_Reservas";
-            Tsmi_Reservas.Size = new Size(80, 24);
-            Tsmi_Reservas.Text = "Reservas";
-            Tsmi_Reservas.Click += reservasToolStripMenuItem_Click;
             // 
             // Pnl_Menu
             // 
             Pnl_Menu.BackColor = SystemColors.ActiveCaption;
             Pnl_Menu.Dock = DockStyle.Fill;
-            Pnl_Menu.Location = new Point(3, 36);
+            Pnl_Menu.Location = new Point(3, 3);
             Pnl_Menu.Name = "Pnl_Menu";
-            Pnl_Menu.Size = new Size(1234, 731);
-            Pnl_Menu.TabIndex = 2;
+            Pnl_MenuLayout.SetRowSpan(Pnl_Menu, 2);
+            Pnl_Menu.Size = new Size(1234, 764);
+            Pnl_Menu.TabIndex = 3;
             // 
             // FrMenu
             // 
@@ -94,22 +68,18 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1240, 770);
             Controls.Add(Pnl_MenuLayout);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(1200, 700);
             Name = "FrMenu";
             Text = "Menú principal";
+            WindowState = FormWindowState.Maximized;
             Pnl_MenuLayout.ResumeLayout(false);
-            Pnl_MenuLayout.PerformLayout();
-            Ms_Opciones.ResumeLayout(false);
-            Ms_Opciones.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
         private TableLayoutPanel Pnl_MenuLayout;
-        private MenuStrip Ms_Opciones;
-        private ToolStripMenuItem Tsmi_Cartelera;
-        private ToolStripMenuItem Tsmi_Reservas;
         private Panel Pnl_Menu;
         private HelpProvider helpProvider1;
     }

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             TlpDivFormAndDgv = new TableLayoutPanel();
             TlpAux1 = new TableLayoutPanel();
             TlpAux2 = new TableLayoutPanel();
@@ -196,7 +196,7 @@
             TbAsientoDecodificado.MaximumSize = new Size(0, 30);
             TbAsientoDecodificado.MinimumSize = new Size(95, 30);
             TbAsientoDecodificado.Name = "TbAsientoDecodificado";
-            TbAsientoDecodificado.PlaceholderText = "100";
+            TbAsientoDecodificado.PlaceholderText = "A10";
             TbAsientoDecodificado.Size = new Size(180, 30);
             TbAsientoDecodificado.TabIndex = 67;
             // 
@@ -246,7 +246,7 @@
             LbID.Padding = new Padding(0, 0, 2, 0);
             LbID.Size = new Size(87, 23);
             LbID.TabIndex = 11;
-            LbID.Text = "ID Ventas";
+            LbID.Text = "ID Boleto";
             LbID.TextAlign = ContentAlignment.MiddleRight;
             // 
             // LbEstado
@@ -430,7 +430,7 @@
             TbAsientoCodificado.MaximumSize = new Size(0, 30);
             TbAsientoCodificado.MinimumSize = new Size(95, 30);
             TbAsientoCodificado.Name = "TbAsientoCodificado";
-            TbAsientoCodificado.PlaceholderText = "100";
+            TbAsientoCodificado.PlaceholderText = "10";
             TbAsientoCodificado.Size = new Size(180, 30);
             TbAsientoCodificado.TabIndex = 66;
             // 
@@ -689,35 +689,35 @@
             DgvBoletos.AllowUserToAddRows = false;
             DgvBoletos.AllowUserToResizeColumns = false;
             DgvBoletos.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(42, 44, 49);
-            dataGridViewCellStyle4.ForeColor = Color.FromArgb(230, 230, 230);
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(178, 44, 48);
-            dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            DgvBoletos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(42, 44, 49);
+            dataGridViewCellStyle1.ForeColor = Color.FromArgb(230, 230, 230);
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(178, 44, 48);
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            DgvBoletos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             DgvBoletos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DgvBoletos.BackgroundColor = Color.FromArgb(37, 38, 43);
             DgvBoletos.BorderStyle = BorderStyle.None;
             DgvBoletos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             DgvBoletos.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(45, 47, 52);
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = Color.White;
-            dataGridViewCellStyle5.Padding = new Padding(8, 0, 0, 0);
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(45, 47, 52);
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            DgvBoletos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(45, 47, 52);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.Padding = new Padding(8, 0, 0, 0);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(45, 47, 52);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            DgvBoletos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             DgvBoletos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(37, 38, 43);
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle6.ForeColor = Color.FromArgb(230, 230, 230);
-            dataGridViewCellStyle6.Padding = new Padding(8, 0, 5, 0);
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(178, 44, 48);
-            dataGridViewCellStyle6.SelectionForeColor = Color.White;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            DgvBoletos.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(37, 38, 43);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(230, 230, 230);
+            dataGridViewCellStyle3.Padding = new Padding(8, 0, 5, 0);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(178, 44, 48);
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            DgvBoletos.DefaultCellStyle = dataGridViewCellStyle3;
             DgvBoletos.Dock = DockStyle.Fill;
             DgvBoletos.EnableHeadersVisualStyles = false;
             DgvBoletos.Font = new Font("Segoe UI", 9.5F);

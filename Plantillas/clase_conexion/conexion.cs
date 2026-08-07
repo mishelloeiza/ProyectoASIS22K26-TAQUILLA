@@ -13,10 +13,10 @@ namespace clase_conexion
     public class conexion
     {
         private MySqlConnection connecion;
-        private String server = "localhost";
+        private String server = "172.20.10.7";
         private String datebase = "taquillas_cine";
-        private String user = "root";
-        private String password = "root";
+        private String user = "root1";
+        private String password = "Root";
         private String pconexion;
         public conexion()
         {

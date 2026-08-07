@@ -60,6 +60,7 @@
             TbFiltro = new Componentes.CustomTextBox();
             CbFiltro = new Componentes.CustomComboBox();
             DgvClientes = new Componentes.CustomDataGridView();
+            customComboBox1 = new Componentes.CustomComboBox();
             TlpDivFormAndDgv.SuspendLayout();
             TlpAux1.SuspendLayout();
             TlpAux2.SuspendLayout();
@@ -185,7 +186,7 @@
             customTextBox2.MaximumSize = new Size(0, 30);
             customTextBox2.MinimumSize = new Size(190, 30);
             customTextBox2.Name = "customTextBox2";
-            customTextBox2.PlaceholderText = "1";
+            customTextBox2.PlaceholderText = "Santizo";
             customTextBox2.Size = new Size(291, 30);
             customTextBox2.TabIndex = 73;
             // 
@@ -201,7 +202,7 @@
             TbNombre.MaximumSize = new Size(0, 30);
             TbNombre.MinimumSize = new Size(190, 30);
             TbNombre.Name = "TbNombre";
-            TbNombre.PlaceholderText = "1";
+            TbNombre.PlaceholderText = "Diego";
             TbNombre.Size = new Size(290, 30);
             TbNombre.TabIndex = 72;
             // 
@@ -301,7 +302,7 @@
             customTextBox3.MaximumSize = new Size(0, 30);
             customTextBox3.MinimumSize = new Size(190, 30);
             customTextBox3.Name = "customTextBox3";
-            customTextBox3.PlaceholderText = "1";
+            customTextBox3.PlaceholderText = "diego@gmail.com";
             customTextBox3.Size = new Size(291, 30);
             customTextBox3.TabIndex = 74;
             // 
@@ -317,7 +318,7 @@
             TbIdentificacion.MaximumSize = new Size(0, 30);
             TbIdentificacion.MinimumSize = new Size(190, 30);
             TbIdentificacion.Name = "TbIdentificacion";
-            TbIdentificacion.PlaceholderText = "1";
+            TbIdentificacion.PlaceholderText = "111122220101";
             TbIdentificacion.Size = new Size(290, 30);
             TbIdentificacion.TabIndex = 66;
             // 
@@ -486,6 +487,7 @@
             TlpAux3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 510F));
             TlpAux3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             TlpAux3.Controls.Add(TlpFilter, 1, 0);
+            TlpAux3.Controls.Add(customComboBox1, 2, 0);
             TlpAux3.Dock = DockStyle.Fill;
             TlpAux3.Location = new Point(0, 300);
             TlpAux3.Margin = new Padding(0);
@@ -621,6 +623,28 @@
             DgvClientes.Size = new Size(1050, 325);
             DgvClientes.TabIndex = 2;
             // 
+            // customComboBox1
+            // 
+            customComboBox1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            customComboBox1.BackColor = Color.FromArgb(55, 60, 72);
+            customComboBox1.BaseColor = Color.FromArgb(40, 40, 40);
+            customComboBox1.BGColor = Color.FromArgb(55, 60, 72);
+            customComboBox1.DrawMode = DrawMode.OwnerDrawFixed;
+            customComboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            customComboBox1.FlatStyle = FlatStyle.Flat;
+            customComboBox1.Font = new Font("Segoe UI", 9.5F);
+            customComboBox1.ForeColor = Color.FromArgb(230, 230, 230);
+            customComboBox1.FormattingEnabled = true;
+            customComboBox1.HoverColor = Color.Crimson;
+            customComboBox1.HoverFontColor = Color.White;
+            customComboBox1.ItemHeight = 24;
+            customComboBox1.Location = new Point(785, 28);
+            customComboBox1.Margin = new Padding(5);
+            customComboBox1.MinimumSize = new Size(190, 0);
+            customComboBox1.Name = "customComboBox1";
+            customComboBox1.Size = new Size(260, 30);
+            customComboBox1.TabIndex = 1;
+            // 
             // FrUcClientes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -675,5 +699,6 @@
         private Componentes.CustomTextBox TbNombre;
         private Componentes.CustomTextBox customTextBox3;
         private Componentes.CustomDataGridView DgvClientes;
+        private Componentes.CustomComboBox customComboBox1;
     }
 }

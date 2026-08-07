@@ -1,4 +1,5 @@
-﻿using clase_conexion;
+using clase_conexion;
+using Con_Admin;
 using MySql.Data.MySqlClient;
 using System;
 using System.Data;
@@ -11,17 +12,10 @@ namespace Forms_Admin.Usuarios
         public FrUcBitacora()
         {
             InitializeComponent();
-        }
-
-        private void FrUcBitacora_Load(object sender, EventArgs e)
-        {
             CargarBitacora();
         }
 
-        private void BtnActualizar_Click(object sender, EventArgs e)
-        {
-            CargarBitacora();
-        }
+        private readonly If_Bitacora datosBitacora = new If_Bitacora();
 
         private void CargarBitacora()
         {
@@ -42,7 +36,6 @@ namespace Forms_Admin.Usuarios
                 LEFT JOIN tbl_nombre_pc n       ON n.id_nombre_pc = b.id_nombre_pc
                 ORDER BY b.fecha_bitacora DESC, b.hora_bitacora DESC";
 
-
                 var miConexion = new conexion();
                 MySqlConnection cn = miConexion.GetConnection();
 
@@ -62,7 +55,11 @@ namespace Forms_Admin.Usuarios
 
         private void TlpTitleLabel_Paint(object sender, PaintEventArgs e)
         {
+        }
 
+        private void BtnActualizar_Click(object sender, EventArgs e)
+        {
+            CargarBitacora();
         }
     }
 }

@@ -35,6 +35,7 @@
             BtnFunciones = new Button();
             BtnPeliculas = new Button();
             PnlMain = new Panel();
+            BtnCartelera = new Button();
             PnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)CbCatalog).BeginInit();
             SuspendLayout();
@@ -43,6 +44,7 @@
             // 
             PnlTop.BackColor = Color.Black;
             PnlTop.BorderStyle = BorderStyle.FixedSingle;
+            PnlTop.Controls.Add(BtnCartelera);
             PnlTop.Controls.Add(CbCatalog);
             PnlTop.Controls.Add(BtnSalas);
             PnlTop.Controls.Add(BtnPromocion);
@@ -151,6 +153,24 @@
             PnlMain.Size = new Size(1050, 665);
             PnlMain.TabIndex = 3;
             // 
+            // BtnCartelera
+            // 
+            BtnCartelera.BackColor = Color.Black;
+            BtnCartelera.Cursor = Cursors.Hand;
+            BtnCartelera.Dock = DockStyle.Left;
+            BtnCartelera.FlatAppearance.BorderColor = Color.White;
+            BtnCartelera.FlatStyle = FlatStyle.Flat;
+            BtnCartelera.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            BtnCartelera.ForeColor = Color.FromArgb(220, 210, 210);
+            BtnCartelera.Location = new Point(516, 0);
+            BtnCartelera.Margin = new Padding(0, 2, 0, 0);
+            BtnCartelera.Name = "BtnCartelera";
+            BtnCartelera.Size = new Size(129, 33);
+            BtnCartelera.TabIndex = 8;
+            BtnCartelera.Text = "Cartelera";
+            BtnCartelera.UseVisualStyleBackColor = false;
+            BtnCartelera.Click += BtnCartelera_Click;
+            // 
             // FrUcMainFunciones
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -174,5 +194,6 @@
         private Button BtnFunciones;
         private Button BtnPeliculas;
         private Panel PnlMain;
+        private Button BtnCartelera;
     }
 }

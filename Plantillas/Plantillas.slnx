@@ -1,8 +1,10 @@
 <Solution>
+  <Project Path="Carteleras/Carteleras.csproj" />
   <Project Path="clase_conexion/clase_conexion.csproj" Id="12514361-5c1b-41e3-9301-061e7765bddb" />
   <Project Path="Componentes/Componentes.csproj" Id="a6eac5e7-0078-4108-adaa-23d04659e8bc" />
   <Project Path="Con_Admin/Con_Admin.csproj" Id="ce880a73-500a-4123-ba39-97c24bc4a462" />
   <Project Path="Formularios_Admin/Forms_Admin.csproj" Id="fb3bb006-9d71-4455-8fe5-4c4f41a73a1b" />
   <Project Path="Plantilla_Admin/Plantilla_Admin.csproj" />
   <Project Path="Plantilla_Cliente/Plantilla_Cliente.csproj" />
+  <Project Path="Validaciones/Validaciones.csproj" />
 </Solution>

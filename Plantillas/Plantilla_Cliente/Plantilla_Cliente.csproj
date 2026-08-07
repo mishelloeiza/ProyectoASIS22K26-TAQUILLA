@@ -6,13 +6,19 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="logo.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Imagenes\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Carteleras\Carteleras.csproj" />
     <ProjectReference Include="..\clase_conexion\clase_conexion.csproj" />
   </ItemGroup>
 

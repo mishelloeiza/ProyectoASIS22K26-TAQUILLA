@@ -29,9 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrMenu));
-            tableLayoutPanel1 = new TableLayoutPanel();
+            TlpEstructura = new TableLayoutPanel();
             nightControlBox1 = new ReaLTaiizor.Controls.NightControlBox();
             PnlTop = new Panel();
+            TlpDescripcionUsuario = new TableLayoutPanel();
+            LbUsuarioDescripcion = new Componentes.CustomLabel();
             PnlMain = new Panel();
             tableLayoutPanel2 = new TableLayoutPanel();
             BtnLogo = new Button();
@@ -41,30 +43,32 @@
             BtnVentas = new Button();
             BtnReportes = new Button();
             BtnUsuarios = new Button();
-            tableLayoutPanel1.SuspendLayout();
+            TlpEstructura.SuspendLayout();
+            PnlTop.SuspendLayout();
+            TlpDescripcionUsuario.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // TlpEstructura
             // 
-            tableLayoutPanel1.ColumnCount = 3;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150F));
-            tableLayoutPanel1.Controls.Add(nightControlBox1, 2, 0);
-            tableLayoutPanel1.Controls.Add(PnlTop, 1, 0);
-            tableLayoutPanel1.Controls.Add(PnlMain, 1, 1);
-            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 0, 0);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.Margin = new Padding(0);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 1;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new Size(1200, 700);
-            tableLayoutPanel1.TabIndex = 0;
+            TlpEstructura.ColumnCount = 3;
+            TlpEstructura.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
+            TlpEstructura.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            TlpEstructura.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150F));
+            TlpEstructura.Controls.Add(nightControlBox1, 2, 0);
+            TlpEstructura.Controls.Add(PnlTop, 1, 0);
+            TlpEstructura.Controls.Add(PnlMain, 1, 1);
+            TlpEstructura.Controls.Add(tableLayoutPanel2, 0, 0);
+            TlpEstructura.Dock = DockStyle.Fill;
+            TlpEstructura.Location = new Point(0, 0);
+            TlpEstructura.Margin = new Padding(0);
+            TlpEstructura.Name = "TlpEstructura";
+            TlpEstructura.RowCount = 1;
+            TlpEstructura.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
+            TlpEstructura.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            TlpEstructura.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            TlpEstructura.Size = new Size(1200, 700);
+            TlpEstructura.TabIndex = 0;
             // 
             // nightControlBox1
             // 
@@ -92,6 +96,7 @@
             // 
             // PnlTop
             // 
+            PnlTop.Controls.Add(TlpDescripcionUsuario);
             PnlTop.Dock = DockStyle.Fill;
             PnlTop.Location = new Point(200, 0);
             PnlTop.Margin = new Padding(0);
@@ -100,10 +105,39 @@
             PnlTop.TabIndex = 4;
             PnlTop.MouseMove += PnlTop_MouseMove;
             // 
+            // TlpDescripcionUsuario
+            // 
+            TlpDescripcionUsuario.ColumnCount = 1;
+            TlpDescripcionUsuario.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
+            TlpDescripcionUsuario.Controls.Add(LbUsuarioDescripcion, 0, 0);
+            TlpDescripcionUsuario.Dock = DockStyle.Left;
+            TlpDescripcionUsuario.GrowStyle = TableLayoutPanelGrowStyle.AddColumns;
+            TlpDescripcionUsuario.Location = new Point(0, 0);
+            TlpDescripcionUsuario.Name = "TlpDescripcionUsuario";
+            TlpDescripcionUsuario.RowCount = 1;
+            TlpDescripcionUsuario.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            TlpDescripcionUsuario.Size = new Size(574, 35);
+            TlpDescripcionUsuario.TabIndex = 2;
+            TlpDescripcionUsuario.MouseMove += TlpDescripcionUsuario_MouseMove;
+            // 
+            // LbUsuarioDescripcion
+            // 
+            LbUsuarioDescripcion.AutoSize = true;
+            LbUsuarioDescripcion.Dock = DockStyle.Left;
+            LbUsuarioDescripcion.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            LbUsuarioDescripcion.ForeColor = Color.FromArgb(220, 220, 220);
+            LbUsuarioDescripcion.Location = new Point(3, 0);
+            LbUsuarioDescripcion.Name = "LbUsuarioDescripcion";
+            LbUsuarioDescripcion.Padding = new Padding(0, 0, 2, 0);
+            LbUsuarioDescripcion.Size = new Size(77, 35);
+            LbUsuarioDescripcion.TabIndex = 2;
+            LbUsuarioDescripcion.Text = "Usuario:";
+            LbUsuarioDescripcion.TextAlign = ContentAlignment.MiddleRight;
+            // 
             // PnlMain
             // 
-            tableLayoutPanel1.SetColumnSpan(PnlMain, 2);
-            PnlMain.Dock = DockStyle.Fill;
+            PnlMain.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            TlpEstructura.SetColumnSpan(PnlMain, 2);
             PnlMain.Location = new Point(200, 35);
             PnlMain.Margin = new Padding(0);
             PnlMain.Name = "PnlMain";
@@ -127,7 +161,7 @@
             tableLayoutPanel2.Margin = new Padding(0);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 7;
-            tableLayoutPanel1.SetRowSpan(tableLayoutPanel2, 2);
+            TlpEstructura.SetRowSpan(tableLayoutPanel2, 2);
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 200F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
@@ -152,6 +186,7 @@
             BtnLogo.Size = new Size(200, 200);
             BtnLogo.TabIndex = 2;
             BtnLogo.UseVisualStyleBackColor = false;
+            BtnLogo.Click += BtnLogo_Click;
             // 
             // BtnSalir
             // 
@@ -267,19 +302,22 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ClientSize = new Size(1200, 700);
-            Controls.Add(tableLayoutPanel1);
+            Controls.Add(TlpEstructura);
             FormBorderStyle = FormBorderStyle.None;
             MinimumSize = new Size(1200, 700);
             Name = "FrMenu";
             Text = "FrMenu";
-            tableLayoutPanel1.ResumeLayout(false);
+            TlpEstructura.ResumeLayout(false);
+            PnlTop.ResumeLayout(false);
+            TlpDescripcionUsuario.ResumeLayout(false);
+            TlpDescripcionUsuario.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private TableLayoutPanel tableLayoutPanel1;
+        private TableLayoutPanel TlpEstructura;
         private Button BtnLogo;
         private Panel PnlTop;
         private ReaLTaiizor.Controls.NightControlBox nightControlBox1;
@@ -291,5 +329,7 @@
         private Button BtnSalir;
         private Panel PnlMain;
         private TableLayoutPanel tableLayoutPanel2;
+        private TableLayoutPanel TlpDescripcionUsuario;
+        private Componentes.CustomLabel LbUsuarioDescripcion;
     }
 }

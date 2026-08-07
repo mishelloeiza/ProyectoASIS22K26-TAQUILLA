@@ -38,7 +38,7 @@ namespace Componentes
         {
             FlatStyle = FlatStyle.Flat;
             FlatAppearance.BorderColor = Color.White;
-            FlatAppearance.BorderSize = 1;
+            FlatAppearance.BorderSize = 0;
             TextAlign = ContentAlignment.MiddleLeft;
             Font = new Font("Segoe UI", 8.5f);
             BackColor = Color.FromArgb(55, 60, 72);

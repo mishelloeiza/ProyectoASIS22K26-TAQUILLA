@@ -57,9 +57,10 @@
             Tlp_main.Name = "Tlp_main";
             Tlp_main.RowCount = 3;
             Tlp_main.RowStyles.Add(new RowStyle(SizeType.Absolute, 31F));
-            Tlp_main.RowStyles.Add(new RowStyle(SizeType.Absolute, 250F));
+            Tlp_main.RowStyles.Add(new RowStyle(SizeType.Absolute, 225F));
             Tlp_main.RowStyles.Add(new RowStyle(SizeType.Absolute, 200F));
-            Tlp_main.Size = new Size(300, 531);
+            Tlp_main.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            Tlp_main.Size = new Size(300, 500);
             Tlp_main.TabIndex = 0;
             // 
             // Tlp_formulario
@@ -74,16 +75,16 @@
             Tlp_formulario.Controls.Add(TbUsuario, 0, 1);
             Tlp_formulario.Controls.Add(BtnIngresar, 0, 4);
             Tlp_formulario.Dock = DockStyle.Fill;
-            Tlp_formulario.Location = new Point(17, 308);
+            Tlp_formulario.Location = new Point(17, 283);
             Tlp_formulario.Margin = new Padding(17, 27, 17, 7);
             Tlp_formulario.Name = "Tlp_formulario";
             Tlp_formulario.RowCount = 5;
             Tlp_formulario.RowStyles.Add(new RowStyle(SizeType.Absolute, 25F));
-            Tlp_formulario.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            Tlp_formulario.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            Tlp_formulario.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            Tlp_formulario.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            Tlp_formulario.Size = new Size(266, 216);
+            Tlp_formulario.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            Tlp_formulario.RowStyles.Add(new RowStyle(SizeType.Absolute, 25F));
+            Tlp_formulario.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            Tlp_formulario.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            Tlp_formulario.Size = new Size(266, 210);
             Tlp_formulario.TabIndex = 8;
             // 
             // LbUsuario
@@ -106,10 +107,10 @@
             LbContra.Dock = DockStyle.Fill;
             LbContra.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             LbContra.ForeColor = Color.FromArgb(220, 220, 220);
-            LbContra.Location = new Point(3, 82);
+            LbContra.Location = new Point(3, 75);
             LbContra.Name = "LbContra";
             LbContra.Padding = new Padding(0, 0, 2, 0);
-            LbContra.Size = new Size(260, 20);
+            LbContra.Size = new Size(260, 25);
             LbContra.TabIndex = 1;
             LbContra.Text = "Contraseña";
             LbContra.TextAlign = ContentAlignment.BottomLeft;
@@ -121,7 +122,7 @@
             TbContra.BorderStyle = BorderStyle.FixedSingle;
             TbContra.Font = new Font("Segoe UI", 10F);
             TbContra.ForeColor = Color.FromArgb(230, 230, 230);
-            TbContra.Location = new Point(5, 107);
+            TbContra.Location = new Point(5, 105);
             TbContra.Margin = new Padding(5);
             TbContra.MaximumSize = new Size(0, 30);
             TbContra.MinimumSize = new Size(190, 30);
@@ -157,7 +158,7 @@
             BtnIngresar.FlatStyle = FlatStyle.Flat;
             BtnIngresar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             BtnIngresar.ForeColor = Color.White;
-            BtnIngresar.Location = new Point(78, 167);
+            BtnIngresar.Location = new Point(78, 160);
             BtnIngresar.Margin = new Padding(0);
             BtnIngresar.MaximumSize = new Size(110, 40);
             BtnIngresar.MinimumSize = new Size(110, 40);
@@ -226,11 +227,11 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
-            ClientSize = new Size(300, 531);
+            ClientSize = new Size(300, 500);
             Controls.Add(Tlp_main);
             FormBorderStyle = FormBorderStyle.None;
-            MaximumSize = new Size(300, 531);
-            MinimumSize = new Size(300, 531);
+            MaximumSize = new Size(300, 500);
+            MinimumSize = new Size(300, 500);
             Name = "FrLogin";
             Text = "Login";
             Tlp_main.ResumeLayout(false);

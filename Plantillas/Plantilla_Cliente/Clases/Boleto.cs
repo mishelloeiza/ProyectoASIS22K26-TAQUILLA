@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 /*Inicio de código realizado por Carlos Andres Arriaza Lara 0901-23-13862 31/07/2026*/
-namespace Plantilla_Cliente
+namespace Plantilla_Cliente.Clases
 {
     public class Boleto
     {

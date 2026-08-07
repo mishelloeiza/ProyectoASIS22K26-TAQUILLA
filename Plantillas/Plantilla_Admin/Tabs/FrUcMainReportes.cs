@@ -293,6 +293,11 @@ namespace Plantilla_Admin
             MessageBox.Show("Exportado a:\n" + sfd.FileName,
                 "Exportar", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void DgvReporte_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
 /* Fin de Codigo de Diego Fernando Santizo Samayoa con carnet: 0901-22-15950 en la  
